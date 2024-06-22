@@ -1,0 +1,67 @@
+.addEdit {
+  margin-top: 20px;
+  padding:10px 0;
+  background: white;
+  width: 700px;
+  height: 500px;
+}
+.formTitle{
+    background: white;  
+}
+.inputItem {
+ 
+  padding: 10px ;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+input[type="text"],
+input[type="date"],
+input[type="textarea"] 
+{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 1px solid #af7eeb;
+  border-radius: 5px;
+}
+input[type="submit"]{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 1px solid #af7eeb;
+    background-color:#af7eeb ;
+    color: white;
+    border-radius: 5px;
+}
+.inputTitle {
+  background: white;
+  padding: 5px 15px;
+  width: 20%;
+  display: flex;
+  justify-content: left;
+  margin-left: 10px;
+}
+.input {
+  width: 300px;
+}
+.bg-white {
+  background: white;
+}
+.fragment{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: white;
+  
+}
+.error{
+  font-size:small;
+    color: red;
+    background: white;
+    margin: 0;
+    padding: 0;
+}

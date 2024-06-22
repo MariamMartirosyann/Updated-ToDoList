@@ -1,0 +1,33 @@
+.toDoList {
+  margin-top: 20px;
+  background: white;
+  width: 700px;
+  height: 450px;
+  overflow: hidden;
+}
+
+.toDoList:hover {
+  overflow-y: scroll;
+}
+
+.trash {
+  display: flex;
+  justify-content: end;
+  position: relative;
+}
+.trashNumber {
+  color: blueviolet;
+  position: absolute;
+  margin-top: -32px;
+}
+.trashTitle {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .toDoList {
+    width: 100%;
+  }
+  
+}

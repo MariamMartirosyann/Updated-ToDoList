@@ -1,0 +1,19 @@
+* {
+  background-color: #e6e6fa;
+  text-align: center;
+  align-items: center;
+}
+.mainContainer {
+  margin: 60px auto;
+  width: 700px;
+  height: 300px;
+}
+
+.add{   
+  width: 150px;
+  height: 30px;
+  background: #af7eeb;
+  border: 1px solid #af7eeb;
+  border-radius: 25px;
+  color: white;
+}

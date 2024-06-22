@@ -1,0 +1,39 @@
+.item {
+  background: white;
+  margin: 5px 0;
+  padding: 5px;
+  border: 1px solid #af7eeb;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  padding-left: 30px;
+}
+.title {
+  font-weight: 500;;
+  margin-right: 7px;
+  background: white;
+}
+.description{
+    background: white; 
+    margin-right: 17px;
+}
+
+input[type="checkbox"] {
+  width: 1.5em;
+  height: 1.5rem;
+  accent-color: #af7eeb;
+  margin:  0 1rem;
+}
+.start{
+  background: white; 
+  width: 75%;
+  display: flex;
+  left: 0;
+}
+.end{
+  background: white; 
+  width: 25%;
+  display: flex;
+  right: 0;
+}
+
