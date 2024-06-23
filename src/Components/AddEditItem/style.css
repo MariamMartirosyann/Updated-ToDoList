@@ -9,7 +9,6 @@
     background: white;  
 }
 .inputItem {
- 
   padding: 10px ;
   background: white;
   display: flex;
@@ -64,4 +63,9 @@ input[type="submit"]{
     background: white;
     margin: 0;
     padding: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  input[type="submit"]{
+    width: 100%;}
 }

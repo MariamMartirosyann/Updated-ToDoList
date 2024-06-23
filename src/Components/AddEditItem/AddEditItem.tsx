@@ -85,10 +85,12 @@ const AddEditItem = ({ editData }: IAddEditItemProps) => {
                     <input className="bg-white" type="date" min={Date.now()} id="deadline"   {...register('deadline')} />
                 </div>
                 <div className="inputItem" >
-                    <input className="bg-white" type="submit" value="Save Task" />
+                    <input type="submit" value="Save Task" />
                 </div>
             </form>
-            <input className="bg-white" type="submit" value="Back to List" onClick={handleBackToList} />
+            <div className="inputItem" >
+            <input  type="submit" value="Back to List" onClick={handleBackToList} />
+            </div>
         </div>
     )
 }
