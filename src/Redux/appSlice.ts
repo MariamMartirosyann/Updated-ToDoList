@@ -4,7 +4,7 @@ const appSlice = createSlice({
   name: "app",
   initialState: {
     showToDoList: true,
-    showTrash:false
+    showTrash: false,
   },
   reducers: {
     hideToDoList: (state) => {
@@ -13,14 +13,8 @@ const appSlice = createSlice({
     showToDoList: (state) => {
       state.showToDoList = true;
     },
-    showTrash: (state) => {
-      state.showTrash = true;
-    },
-    hideTrash: (state) => {
-      state.showTrash = false;
-    },
   },
 });
 
-export const{hideToDoList,showToDoList,showTrash,hideTrash}=appSlice.actions
-export default appSlice.reducer
+export const { hideToDoList, showToDoList } = appSlice.actions;
+export default appSlice.reducer;

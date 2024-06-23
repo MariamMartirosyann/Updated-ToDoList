@@ -4,8 +4,6 @@ export interface IToDoItem {
   description: string;
   deadline: string;
   done: boolean;
-  
- 
 
 }
 export interface IToDoList {
@@ -17,4 +15,27 @@ export interface IFormdata {
   description: string|"";
   deadline: string|"";
   done: boolean;
+}
+
+export interface AddItemPayload {
+  title: string;
+  description: string;
+  deadline:string;
+}
+
+export interface EditItemPayload {
+  id: number ;
+  title: string;
+  description: string;
+  deadline:string;
+  done: boolean;
+}
+
+export interface ToggleDonePayload {
+  id: number |string;
+  done: boolean;
+}
+
+export interface DeleteItemPayload {
+  id: number |string;
 }

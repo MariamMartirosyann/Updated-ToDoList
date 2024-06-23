@@ -1,24 +1,19 @@
-import { useForm } from "react-hook-form"
-import { IFormdata, IToDoItem } from "../../Redux/interfaces"
+import { useForm, Controller } from "react-hook-form";
+import { IFormdata, IToDoItem } from "../../Redux/interfaces";
 import { useDispatch } from "react-redux";
 import { addItem, editItem } from "../../Redux/ToDoSlice";
 import { showToDoList } from "../../Redux/appSlice";
 import { useEffect } from "react";
-import "./style.css"
-
-
+import "./style.css";
 
 interface IAddEditItemProps {
-
     editData?: IToDoItem;
 }
 
 const AddEditItem = ({ editData }: IAddEditItemProps) => {
-
     const dispatch = useDispatch();
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<IFormdata>();
-
+    const { control, handleSubmit, reset, formState: { errors } } = useForm<IFormdata>();
 
     const onSubmit = (data: IFormdata) => {
         if (editData) {
@@ -28,12 +23,9 @@ const AddEditItem = ({ editData }: IAddEditItemProps) => {
                 description: data.description,
                 done: data.done,
                 deadline: data.deadline,
-
             };
             dispatch(editItem(newFormData));
-
-        }
-        else {
+        } else {
             const newFormData = {
                 title: data.title,
                 description: data.description,
@@ -41,15 +33,14 @@ const AddEditItem = ({ editData }: IAddEditItemProps) => {
                 deadline: data.deadline,
             };
             dispatch(addItem(newFormData));
-
         }
-        reset()
-        dispatch(showToDoList())
-    }
-    const handleBackToList = () => {
-        dispatch(showToDoList())
-    }
+        reset();
+        dispatch(showToDoList());
+    };
 
+    const handleBackToList = () => {
+        dispatch(showToDoList());
+    };
 
     useEffect(() => {
         if (editData) {
@@ -57,42 +48,77 @@ const AddEditItem = ({ editData }: IAddEditItemProps) => {
                 title: editData.title,
                 description: editData.description,
                 deadline: editData.deadline,
-
             });
-
         }
     }, [editData, reset]);
 
     return (
         <div className="addEdit">
-
-            <h3 className="formTitle">{editData ? "Edit" : "Add"}  Task</h3>
-            <form onSubmit={handleSubmit(onSubmit)}   >
+            <h3 className="formTitle">{editData ? "Edit" : "Add"} Task</h3>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputItem">
-                    <label className="inputTitle"> Title :</label>
+                    <label className="inputTitle">Title :</label>
                     <div className="fragment">
-                        <input className="bg-white" type="text" id="title"  {...register('title', { required: "Title is required." })} />
-                        {errors.title ? <p className="error"> Name is required</p> : null}
+                        <Controller
+                            name="title"
+                            control={control}
+                            defaultValue=""
+                            rules={{ required: "Title is required." }}
+                            render={({ field }) => (
+                                <input
+                                    className="bg-white"
+                                    type="text"
+                                    id="title"
+                                    {...field}
+                                />
+                            )}
+                        />
+                        {errors.title && <p className="error">Title is required</p>}
                     </div>
-
                 </div>
                 <div className="inputItem">
-                    <label className="inputTitle">Description: </label>
-                    <input className="bg-white" maxLength={100} type="textarea" id="description" {...register('description')} />
+                    <label className="inputTitle">Description:</label>
+                    <Controller
+                        name="description"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <input
+                                className="bg-white"
+                                maxLength={100}
+                                type="textarea"
+                                id="description"
+                                {...field}
+                            />
+                        )}
+                    />
                 </div>
                 <div className="inputItem">
-                    <label className="inputTitle">Deadline: </label>
-                    <input className="bg-white" type="date" min={Date.now()} id="deadline"   {...register('deadline')} />
+                    <label className="inputTitle">Deadline:</label>
+                    <Controller
+                        name="deadline"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <input
+                                className="bg-white"
+                                type="date"
+                                min={new Date().toISOString().split("T")[0]}
+                                id="deadline"
+                                {...field}
+                            />
+                        )}
+                    />
                 </div>
-                <div className="inputItem" >
+                <div className="inputItem">
                     <input type="submit" value="Save Task" />
                 </div>
             </form>
-            <div className="inputItem" >
-            <input  type="submit" value="Back to List" onClick={handleBackToList} />
+            <div className="inputItem">
+                <input type="submit" value="Back to List" onClick={handleBackToList} />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AddEditItem
+export default AddEditItem;

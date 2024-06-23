@@ -16,44 +16,54 @@ interface ToDoItemProps {
 const statusList = ["Pending", "Completed", "Overdue"]
 
 const ToDoItem: React.FC<ToDoItemProps> = ({ onEdit, data }) => {
+
   const { id, title, description, deadline, done } = data
 
   const dispatch = useDispatch();
 
   const [status, setStatus] = useState(statusList[0])
-  const disabled = status === statusList[2]
+  const [disabled, setDisabled] = useState(false)
+
 
   const handleDoneClick = () => {
+
+    if (disabled) return
     dispatch(
       toggleDone({ id: id, done: !done })
     )
   }
+
   const handleDeleteClick = () => {
+    
     dispatch(moveToTrash(data))
     dispatch(deleteItem(data))
   }
 
 
   const handleStatus = () => {
-    setStatus(statusList[0])
     if (done) {
-      setStatus(statusList[1])
-    }
-    if (Date.now() > Date.parse(deadline)) {
-      setStatus(statusList[2])
+      setStatus(statusList[1]);
+    } else if (Date.now() > Date.parse(deadline)) {
+      setStatus(statusList[2]);
+      setDisabled(true)
+    } else {
+      setStatus(statusList[0]);
     }
   }
 
   useEffect(() => { handleStatus() }, [done, status])
+
   return (
 
     <div className='item'>
       <div className="start"> <input className='checkbox' type="checkbox" checked={!disabled && done} onChange={handleDoneClick} />
-        <p className='description'>{status}</p>{done}<span className='title'>{title}</span><p className='description'>{" : " + description.slice(0, 20) + "..."}</p>{done}</div>
+        <p className='description'>{status}</p>{done}<span className='title'>{title}</span>
+        <p className='description'>{" : " + description.slice(0, 20) + "..."}</p>{done}</div>
 
       <div className="end"><span className='description'>{deadline}</span>
         <EditIcon onClick={() => onEdit(data)} style={{ background: "white", fill: " #af7eeb" }} />
-        <DeleteOutlineIcon onClick={handleDeleteClick} style={{ background: "white", fill: " #af7eeb" }} /></div>
+        <DeleteOutlineIcon onClick={handleDeleteClick} style={{ background: "white", fill: " #af7eeb" }} />
+      </div>
 
     </div>
   )

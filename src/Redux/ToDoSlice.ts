@@ -1,33 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IToDoList, IToDoItem } from "./interfaces";
+import { IToDoList, IToDoItem, AddItemPayload, EditItemPayload, ToggleDonePayload, DeleteItemPayload } from "./interfaces";
 import { defaultList } from "./constants";
 
 const initialState: IToDoList = {
   list: defaultList,
 };
 
-interface AddItemPayload {
-  title: string;
-  description: string;
-  deadline:string;
-}
-
-interface EditItemPayload {
-  id: number ;
-  title: string;
-  description: string;
-  deadline:string;
-  done: boolean;
-}
-
-interface ToggleDonePayload {
-  id: number |string;
-  done: boolean;
-}
-
-interface DeleteItemPayload {
-  id: number |string;
-}
 
 const todoSlice = createSlice({
   name: "todo",
